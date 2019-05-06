@@ -1,2 +1,2 @@
 # PHD_Project_Scripts
-Here i add all scripts of my PHD thesis
+Here i add all scripts of my PHD thesis project
