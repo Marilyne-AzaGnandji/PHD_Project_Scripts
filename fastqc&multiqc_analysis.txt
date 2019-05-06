@@ -1,7 +1,6 @@
 # quality control with fastqc
 ##It is assumed that all softwares for this analysis are installed
 mkdir Fastqcresults#create a repertory named "Fastqcresults" for generated results saving
-cd ./Fastqcresults #Go to this new directory created (Fastqcresults)
 for f in *fastq.gz ; do
     fastqc -o ./FastqcResults/ "${f}"
 done
