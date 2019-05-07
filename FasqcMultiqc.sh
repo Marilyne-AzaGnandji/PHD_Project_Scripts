@@ -8,7 +8,7 @@
 # install fastqc and multiqc
 #
 
-mkdir Fastqcresults #create a repertory named "Fastqcresults" for generated results saving
+mkdir Fastqcresults
 for f in *fastq.gz ; do
     fastqc -o ./FastqcResults/ "${f}"
 done
