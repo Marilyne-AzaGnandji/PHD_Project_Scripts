@@ -8,7 +8,8 @@
 # install fastqc and multiqc
 #
 
-mkdir Fastqcresults
+mkdir Fastqcresults  # what if the folder already exists?
+
 for f in *fastq.gz ; do
     fastqc -o ./FastqcResults/ "${f}"
 done
