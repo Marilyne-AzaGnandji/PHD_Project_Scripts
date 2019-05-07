@@ -1,4 +1,4 @@
-#!bin bash
+#!/bin/bash -
 
 # quality control with fastqc
 ##It is assumed that all softwares for this analysis are installed
