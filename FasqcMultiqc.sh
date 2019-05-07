@@ -11,7 +11,7 @@
 mkdir Fastqcresults  # what if the folder already exists?
 
 for f in *fastq.gz ; do
-    fastqc -o ./FastqcResults/ "${f}"
+    fastqc -o ./Fastqcresults/ "${f}"
 done
 
 # aggregate quality control results with multiqc
