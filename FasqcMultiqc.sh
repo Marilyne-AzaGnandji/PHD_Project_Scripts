@@ -1,7 +1,13 @@
 #!/bin/bash -
 
 # quality control with fastqc
-##It is assumed that all softwares for this analysis are installed
+
+# how to install?
+#
+# indicate here or in another script the command lines used to
+# install fastqc and multiqc
+#
+
 mkdir Fastqcresults #create a repertory named "Fastqcresults" for generated results saving
 for f in *fastq.gz ; do
     fastqc -o ./FastqcResults/ "${f}"
