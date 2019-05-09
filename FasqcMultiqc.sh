@@ -16,8 +16,10 @@ cd MultiQC
 python setup.py install
 
 OUTPUT_FOLDER="FastqcResults"
-mkdir ${OUTPUT_FOLDER}  # what if the folder already exists?
-
+mkdir ${OUTPUT_FOLDER}
+# what if the folder already exists?
+##we can try to check this folder and its content like this:
+cat ${OUTPUT_FOLDER}
 for f in *fastq.gz ; do
     fastqc --outdir ./${OUTPUT_FOLDER}/ "${f}"
 done
