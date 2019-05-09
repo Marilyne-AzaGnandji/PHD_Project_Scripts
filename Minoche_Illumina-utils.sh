@@ -10,7 +10,7 @@ sed -i $'1 i\\\nsample\tr1\tr2' samples.txt
 cat samples.txt
 #create config files for illumina-utils 
 iu-gen-configs samples.txt -o 01_QC/
-#run quality filtering for each sample
+#run minoche quality filtering for each sample
 for ini in 01_QC/*.ini; do
     iu-filter-quality-minoche $ini
 done
