@@ -1,7 +1,7 @@
 #!/bin/bash -
 #Test if fastqc and multiqc are available on your computer
-fastq #or fastqc -h or fastqc --help for more details
-multiqc #or multiqc -h or multiqc --help for more details
+fastq #fastqc --version or fastqc -h or fastqc --help for more details
+multiqc #multiqc --version or multiqc -h or multiqc --help for more details
 
 # how to install?
 #
