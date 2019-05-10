@@ -1,4 +1,4 @@
-#!/bin/bash -
+#!/bin/bash
 #Test if fastqc and multiqc are available on your computer
 fastq #fastqc --version or fastqc -h or fastqc --help for more details
 multiqc #multiqc --version or multiqc -h or multiqc --help for more details
