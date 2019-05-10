@@ -1,7 +1,7 @@
 #!/bin/bash -
 
 cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
-#Detect potential adapters in my paired-en-reads
+#Test to detect potential adapters in my paired-en-reads
 for f in *_R1.fastq.gz;
 do
 atropos detect -pe1 "${f}" -pe2 "${f/R1/R2}"
