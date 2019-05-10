@@ -1,6 +1,7 @@
 #!/bin/bash -
-
-# quality control with fastqc
+#Test if fastqc and multiqc are available on your computer
+fastq #fastqc --version or fastqc -h or fastqc --help for more details
+multiqc #multiqc --version or multiqc -h or multiqc --help for more details
 
 # how to install?
 #
@@ -16,10 +17,12 @@ cd MultiQC
 python setup.py install
 
 OUTPUT_FOLDER="FastqcResults"
-mkdir ${OUTPUT_FOLDER}
 # what if the folder already exists?
-##we can try to check this folder and its content like this:
+##we can check this folder and its content like this:
 cat ${OUTPUT_FOLDER}
+#In case this folder is not available;we can create easily one:
+mkdir ${OUTPUT_FOLDER}
+# quality control with fastqc
 for f in *fastq.gz ; do
     fastqc --outdir ./${OUTPUT_FOLDER}/ "${f}"
 done
