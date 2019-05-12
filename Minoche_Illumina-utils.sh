@@ -3,7 +3,7 @@
 cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 #create a file named samples.txt
 for R1 in *R1.fastq.gz ; do
-echo -e "${R1/_*/}\t${R1}\t${R1/R1/R2}"
+  echo -e "${R1/_*/}\t${R1}\t${R1/R1/R2}"
 done > samples.txt
 #headers add
 sed -i $'1 i\\\nsample\tr1\tr2' samples.txt
