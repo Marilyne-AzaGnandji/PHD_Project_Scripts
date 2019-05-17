@@ -5,16 +5,6 @@ multiqc #multiqc --version or multiqc -h or multiqc --help for more details
 
 # how to install?
 #
-# indicate here or in another script the command lines used to
-# install fastqc and multiqc
-#To install fastqc
-  ##apt-get install fastqc
-#To install multiqc, i used this alternative:
-  ##git clone https://github.com/ewels/Multiqc.git
-#then
-cd MultiQC
-#then to install its setup.py
- ##python setup.py install
 
 OUTPUT_FOLDER="FastqcResults"
 # what if the folder already exists?
