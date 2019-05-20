@@ -5,6 +5,10 @@ multiqc #multiqc --version or multiqc -h or multiqc --help for more details
 
 # how to install?
 #
+<<<<<<< HEAD
+=======
+
+>>>>>>> 36f8b2bfa598d430566c645839a3b77c9baf971f
 OUTPUT_FOLDER="FastqcResults"
 # what if the folder already exists?
 ##we can check this folder and its content like this:
