@@ -1,16 +1,15 @@
-#!/bin/bash -
+#!/bin/bash
 
 cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
-<<<<<<< HEAD
+
 #Detect potential adapters in my paired-en-reads
 #for f in *_R1.fastq.gz;
 #do
 #atropos detect -pe1 "${f}" -pe2 "${f/R1/R2}"
 #done>AdapterDetection.txt
 #Perform quality trimming
-=======
+
 #Test to detect potential adapters in my paired-en-reads
->>>>>>> 259c20ec431d2730e98b89bdf796ee24bb1d43b7
 for f in *_R1.fastq.gz;
 do
 OUTPUT_FILE1="${f:0:-9}"

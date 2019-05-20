@@ -1,21 +1,10 @@
-#!/bin/bash -
+#!/bin/bash
 #Test if fastqc and multiqc are available on your computer
 fastq #fastqc --version or fastqc -h or fastqc --help for more details
 multiqc #multiqc --version or multiqc -h or multiqc --help for more details
 
 # how to install?
 #
-# indicate here or in another script the command lines used to
-# install fastqc and multiqc
-#To install fastqc
-apt-get install fastqc
-#To install multiqc, i use this alternative:
-git clone https://github.com/ewels/Multiqc.git
-#then
-cd MultiQC
-#then to install its setup.py
-python setup.py install
-
 OUTPUT_FOLDER="FastqcResults"
 # what if the folder already exists?
 ##we can check this folder and its content like this:
