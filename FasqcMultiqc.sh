@@ -1,10 +1,10 @@
+
 #!/bin/bash
+# how to install?
+ ##You will see all informations about fastqc and multiqc installation in FastqcMultiqc_installation.sh
 #Test if fastqc and multiqc are available on your computer
 fastq #fastqc --version or fastqc -h or fastqc --help for more details
 multiqc #multiqc --version or multiqc -h or multiqc --help for more details
-
-# how to install?
- ##You will see all informations about fastqc and multiqc installation in FastqcMultiqc_installation.sh
 <<<<<<< HEAD
 =======
 
