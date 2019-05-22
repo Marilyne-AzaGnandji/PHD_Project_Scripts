@@ -1,4 +1,5 @@
 #!/bin/bash -
+cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 #You will see all informations about fastqc and multiqc installation in FastqcMultiqc_installation.sh
 #Test if fastqc and multiqc are available on your computer
 which fastq && echo "OK" || "not installed"
