@@ -13,7 +13,7 @@ cd MultiQC
 #then to install its setup.py
 python setup.py install
 #Atropos installation
-#Python3 at least and cython0.25.2+ are required to install atropos
+#Python3.3+ at least and cython0.25.2+ are required to install atropos
 sudo apt-get update
 sudo apt-get install python3.6 #python3.6 installation
 sudo apt-get cython #cython installation 
