@@ -1,5 +1,4 @@
 #!/bin/bash -
-
 # All informations about fastqc downloading and installation are available here: 
    ##https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 # install fastqc and multiqc
