@@ -1,6 +1,8 @@
 #!/bin/bash -
 
 cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
+#Test if atropos is available on your computer
+which atropos && echo "OK" || "not installed"
 #Detect potential adapters in my paired-en-reads
 for f in *_R1.fastq.gz;
 do
