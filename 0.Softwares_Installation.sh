@@ -3,15 +3,18 @@
    ##https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 # install fastqc and multiqc
 #To install fastqc, i used this alternative
-apt-get install fastqc
+sudo apt-get install fastqc
 #All informations about multiqc downloading and installation are available here:
  ##https://github.com/ewels/MultiQC
 #To install multiqc, i used this alternative:
 git clone https://github.com/ewels/Multiqc.git
+#python(version 2 at least),pip(to get for instance setuptools packages) are required
+sudo apt-get install python
+sudo apt install python-pip
 #then
 cd MultiQC
 #then to install its setup.py
-python setup.py install
+sudo python setup.py install
 #Atropos installation
 #Python3.3+ at least and cython0.25.2+ are required to install atropos
 sudo apt-get update
