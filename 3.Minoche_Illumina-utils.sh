@@ -1,7 +1,11 @@
 #!/bin/bash -
 
 cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
-#create a file named samples.txt
+#Test if iu-filter-quality-minoche is available on your computer
+which iu-filter-quality-minoche && echo "OK" || "not installed"
+#To check the version
+iu-filter-quality-minoche -v # the answer in my case is Illumina-utils v2.6
+# We need first to create a file named samples.txt
 (printf "sample\tr1\tr2\n"
 for R1 in *R1.fastq; do
   echo -e "${R1/_*/}\t${R1}\t${R1/R1/R2}"
