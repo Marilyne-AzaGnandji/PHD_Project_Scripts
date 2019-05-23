@@ -21,7 +21,7 @@ sudo apt-get cython #cython installation
 $update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
 $update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2 #when you put "2",you give priority to python version 3.6 that is currently needed
 #To install atropos
-sudo pip install atropos #sudo apt-get install pip if not installed
+sudo pip install atropos #sudo apt install python3-pip if not installed
 #To install illumina-utils
 pip install illumina-utils
 
