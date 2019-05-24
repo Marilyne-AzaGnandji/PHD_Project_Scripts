@@ -2,7 +2,7 @@
 
 cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 #Test if iu-filter-quality-minoche is available on your computer
-which iu-filter-quality-minoche && echo "OK" || "not installed"
+which iu-filter-quality-minoche && echo "OK" || echo "not installed"
 #To check the version
 iu-filter-quality-minoche -v # the answer in my case is Illumina-utils v2.6
 # We need first to create a file named samples.txt
@@ -15,7 +15,7 @@ done)> samples.txt
 iu-gen-configs samples.txt -o 01_QC/
 #run minoche quality filtering for each sample
 for ini in 01_QC/*.ini; do
-    iu-filter-quality-minoche $ini
+  iu-filter-quality-minoche $ini
 done
 
 exit 0
