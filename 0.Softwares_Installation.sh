@@ -21,10 +21,10 @@ sudo apt-get update
 sudo apt-get install python3 cython python3-pip # currently python 3.7 and cython 0.28
 sudo pip3 install atropos
 # give priority to python 3 over python 2:
-update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
-update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2 # 2 has priority over 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2 # 2 has priority over 1
 
 ## install illumina-utils
-sudo pip install illumina-utils
+sudo pip3 install illumina-utils
 
 exit 0
