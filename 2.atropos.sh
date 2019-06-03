@@ -1,14 +1,17 @@
 #!/bin/bash -
 
 cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
-#Test if atropos is available on your computer
+
+# Test if atropos is available on your computer
 which atropos && echo "OK" || "not installed"
-#Detect potential adapters in my paired-en-reads
+
+# Detect potential adapters in my paired-en-reads
 for f in *_R1.fastq.gz;
 do
   atropos detect -pe1 "${f}" -pe2 "${f/R1/R2}"
 done
-#Perform quality trimming
+
+# Perform quality trimming
 for f in *_R1.fastq.gz;
 do
   OUTPUT_FILE1="${f:0:-9}"
