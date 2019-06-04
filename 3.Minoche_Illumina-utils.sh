@@ -3,7 +3,8 @@
 cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 
 # Test if iu-filter-quality-minoche is available on your computer
-which iu-filter-quality-minoche && echo "OK" || echo "not installed"
+which iu-filter-quality-minoche && echo "OK" || echo "!!! iu-filter-quality-minoche is not installed"
+exit 1
 
 # To check the version
 iu-filter-quality-minoche -v # the answer in my case is Illumina-utils v2.6
