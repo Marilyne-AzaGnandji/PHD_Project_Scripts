@@ -5,12 +5,10 @@ cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 # You will see all informations about fastqc and multiqc installation in Softwares_installation.sh
 
 # Test if fastqc and multiqc are available on your computer
-which fastq && echo "fastqc is installed!" ||  echo "!!!fastqc is not installed"
-#exit 1
-which multiqc && echo "multiqc is installed" ||  echo "!!!multiqc is not installed"
-#exit 1
-OUTPUT_FOLDER="FastqcResults"
+which fastqc && echo "fastqc is installed!" ||  if echo "!!! fastqc is not installed"; then exit 1; fi
+which multiqc && echo "multiqc is installed" ||  if echo "!!! multiqc is not installed"; then exit 1; fi
 
+OUTPUT_FOLDER="FastqcResults"
 # we can check this folder and its content like this:
 sudo find / -type d -name "${OUTPUT_FOLDER}"
 
