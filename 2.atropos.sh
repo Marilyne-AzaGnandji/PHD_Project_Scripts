@@ -3,7 +3,10 @@
 cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 
 # Test if atropos is available on your computer
-which atropos && echo "atropos is installed!" || if echo "!!! atropos is not installed"; then exit 1; fi
+which atropos && echo "atropos is installed!" ||
+if echo "!!! atropos is not installed";
+  then exit 1;
+fi
 
 # Detect potential adapters in my paired-end-reads
 for f in *_R1.fastq.gz;
