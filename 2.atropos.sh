@@ -5,7 +5,7 @@ cd ${HOME}/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/
 # Test if atropos is available on your computer
 which atropos && \
     echo "atropos is installed!" || \
-        { echo "Error: atropos is not installed" ; exit 1 ; }
+   { echo "Error: atropos is not installed" ; exit 1 ; }
 
 # Perform quality trimming (use full length option names)
 for f in *_R1.fastq.gz ; do 
