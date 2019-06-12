@@ -8,17 +8,13 @@ which atropos && \
     { echo "Error: atropos is not installed" ; exit 1 ; }
 
 # Perform quality trimming (use full length option names)
-for f in *_R1.fastq.gz ; do
-    OUTPUT_FILE1=${f/R1/trimmed_R1}
-    OUTPUT_FILE2=${f/R1/trimmed_R2}
-   #echo "$OUTPUT_FILE1"
-    
+for f in *_R1.fastq.gz ; do    
 ## objective: file_R1.fastq.gz -> file_trimmed_R1.fastq.gz   
   atropos \
       trim \
       --quality-cutoff 20,20 \
-      --output ${OUTPUT_FILE1} \
-      --paired-output ${OUTPUT_FILE2} \
+      --output ${f/R1/trimmed_R1} \
+      --paired-output ${f/R1/trimmed_R2} \
       --input1 "${f}" \
       --input2 "${f/R1/R2}"
 done
