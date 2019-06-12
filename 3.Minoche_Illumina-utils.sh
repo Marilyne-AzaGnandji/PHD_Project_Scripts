@@ -5,7 +5,7 @@ cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 # Test if iu-filter-quality-minoche is available on your computer
 which u-filter-quality-minoche && \
     echo "atropos is installed!" || \
-        { echo "Error: iu-filter-quality-minoche is missing because illumina-utils is not installed"; exit 1 ; }
+   { echo "Error: iu-filter-quality-minoche is missing because illumina-utils is not installed"; exit 1 ; }
 # To check the version
 iu-filter-quality-minoche -v # the answer in my case is Illumina-utils v2.6
 
