@@ -7,10 +7,10 @@ cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 # Test if fastqc and multiqc are available on your computer
 which fastqc && \
     echo "fastqc is installed!" || \
-{ echo "Error: fastqc is not installed" ; exit 1 ; }
+    { echo "Error: fastqc is not installed" ; exit 1 ; }
 which multiqc && \
     echo "multiqc is installed!" || \
-{ echo "Error: multiqc is not installed" ; exit 1 ; }
+    { echo "Error: multiqc is not installed" ; exit 1 ; }
 
 OUTPUT_FOLDER="FastqcResults"
 # we can check this folder and its content like this:
