@@ -8,11 +8,7 @@ which atropos && \
         { echo "Error: atropos is not installed" ; exit 1 ; }
 
 # Perform quality trimming (use full length option names)
-<<<<<<< HEAD
-for f in *_R1.fastq.gz ; do  
-=======
-for f in *_R1.fastq.gz ; do    
->>>>>>> b45f2b93119a169823c4f96d40844c095ff767da
+for f in *_R1.fastq.gz ; do 
 ## objective: file_R1.fastq.gz -> file_trimmed_R1.fastq.gz   
   atropos \
       trim \
