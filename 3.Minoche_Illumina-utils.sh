@@ -1,6 +1,6 @@
 #!/bin/bash -
 
-cd /home/u082-f048/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
+cd ${HOME}/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 
 # Test if iu-filter-quality-minoche is available on your computer
 which iu-filter-quality-minoche && \
