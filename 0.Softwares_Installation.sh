@@ -27,4 +27,19 @@ sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2 #
 ## install illumina-utils
 sudo pip3 install illumina-utils
 
+## install simka/simkaMin
+# (see https://github.com/GATB/simka/tree/master/simkaMin)
+# requires cmake2.6+ and gcc4.4.7+
+sudo apt-get update
+sudo apt-get -y install cmake
+sudo apt-get -y install gcc
+git clone https://github.com/GATB/simka.git
+cd simka
+sh INSTALL
+cd example
+./simple_test.sh # To test the sofware on your computer
+cd ..
+python simkaMin/simkaMin.py # To see simka in-line help
+
+
 exit 0
