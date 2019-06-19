@@ -39,7 +39,7 @@ sh INSTALL
 cd example
 ./simple_test.sh # To test the sofware on your computer
 cd ..
-sudo python simkaMin/simkaMin.py # To see simka in-line help
+python simkaMin/simkaMin.py # To see simka in-line help
 
 
 exit 0
