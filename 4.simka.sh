@@ -5,17 +5,17 @@ cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 
 # SAMA_12k_reads_subsampling_seed_1: first directory
 mkdir SAMA_12k_reads_subsampling_seed_1
-cd SAMA_12k_reads_subsampling_seed_1 && cp ../*_L002_R1.fastq.gz ../*_L002_R2.fastq.gz .
+cd SAMA_12k_reads_subsampling_seed_1 && cp ../*_R1.fastq.gz ../*_R2.fastq.gz .
 
 # SAMA_12k_reads_subsampling_seed_2: second directory
 cd ..
 mkdir SAMA_12k_reads_subsampling_seed_2
-cd SAMA_12k_reads_subsampling_seed_2 && cp ../*_L002_R1.fastq.gz ../*_L002_R2.fastq.gz .
+cd SAMA_12k_reads_subsampling_seed_2 && cp ../*_R1.fastq.gz ../*_R2.fastq.gz .
 
 # SAMA_12k_reads_subsampling_seed_3: third directory
 cd ..
 mkdir SAMA_12k_reads_subsampling_seed_3
-cd  SAMA_12k_reads_subsampling_seed_3 && cp ../*_L002_R1.fastq.gz ../*_L002_R2.fastq.gz .
+cd  SAMA_12k_reads_subsampling_seed_3 && cp ../*_R1.fastq.gz ../*_R2.fastq.gz .
 
 # The directory Data contains the 3 directories created
 cd ..
