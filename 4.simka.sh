@@ -1,32 +1,33 @@
 #!/bin/bash -
 
 # We want to create 3 directories containing our data (paired and reads)
-cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads 
+#cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads 
 
 # SAMA_12k_reads_subsampling_seed_1: first directory
-mkdir SAMA_12k_reads_subsampling_seed_1
-cd SAMA_12k_reads_subsampling_seed_1 && cp ../*_R1.fastq.gz ../*_R2.fastq.gz .
+#mkdir SAMA_12k_reads_subsampling_seed_1
+#cd SAMA_12_one_percent_subsampling_seed_1 && cp ../*_R1.fastq.gz ../*_R2.fastq.gz .
 
 # SAMA_12k_reads_subsampling_seed_2: second directory
-cd ..
-mkdir SAMA_12k_reads_subsampling_seed_2
-cd SAMA_12k_reads_subsampling_seed_2 && cp ../*_R1.fastq.gz ../*_R2.fastq.gz .
+#cd ..
+#mkdir SAMA_12k_reads_subsampling_seed_2
+#cd SAMA_12_one_percent_subsampling_seed_2 && cp ../*_R1.fastq.gz ../*_R2.fastq.gz .
 
 # SAMA_12k_reads_subsampling_seed_3: third directory
-cd ..
-mkdir SAMA_12k_reads_subsampling_seed_3
-cd  SAMA_12k_reads_subsampling_seed_3 && cp ../*_R1.fastq.gz ../*_R2.fastq.gz .
+#cd ..
+#mkdir SAMA_12k_reads_subsampling_seed_3
+#cd  SAMA_12_one_percent_subsampling_seed_3 &&
 
 # The directory Data contains the 3 directories created
-cd ..
-mkdir Data && cd Data
-mv ../SAMA_12k_reads_subsampling_seed_1 .
-mv ../SAMA_12k_reads_subsampling_seed_2 .
-mv ../SAMA_12k_reads_subsampling_seed_3 .
+#cd ..
+#mkdir Data &&
+#cd Data
+#mv ../SAMA_12k_reads_subsampling_seed_1 .
+#mv ../SAMA_12k_reads_subsampling_seed_2 .
+#mv ../SAMA_12k_reads_subsampling_seed_3 .
 
-cd
-cd $HOME/Bureau/marilyne/PhD_Thesis/simka
-cp -R ../SAMA_12_first_10k_reads/Data . && rm -r ../SAMA_12_first_10k_reads/Data
+#cd
+#cd $HOME/Bureau/marilyne/PhD_Thesis/simka
+#cp -R ../SAMA_12_first_10k_reads/Data . && rm -r ../SAMA_12_first_10k_reads/Data
 
 cd $HOME/Bureau/marilyne/PhD_Thesis/simka/Data
 
@@ -34,7 +35,7 @@ cd $HOME/Bureau/marilyne/PhD_Thesis/simka/Data
 SIMKA_FOLDER="$HOME/Bureau/marilyne/PhD_Thesis/simka"
 
 ## create a list of sets for simka
-FOLDER="SAMA_12k_reads_subsampling_seed"
+FOLDER="SAMA_12_one_percent_subsampling_seed"
 for i in 1 2 3 ; do
     for f in ./${FOLDER}_${i}/*_R1.fastq.gz ; do
         SAMPLE="${f/.*BU/BU}"
