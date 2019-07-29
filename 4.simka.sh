@@ -5,7 +5,7 @@
 cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 # Create the folder Data and move in it
 mkdir Data && cd ./Data
-# Copy trimmed .fastq.gz files ("trimmed" extension is due to performing sequences quality with atropos & illumina-utils)
+# Copy trimmed .fastq.gz files ("trimmed" extension is due to performing sequences quality filtering with atropos & illumina-utils)
 cp ../*trimmed_* . | gunzip *
 mv Data ../../simka
 
