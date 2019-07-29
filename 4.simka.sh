@@ -1,35 +1,24 @@
 #!/bin/bash -
 
-# We want to create 3 directories containing our data (paired and reads)
-#cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads 
+# We want to create in a repertory named Data 3 folders: SAMA_12k_reads_subsampling_seed_{1..3}
 
-# SAMA_12k_reads_subsampling_seed_1: first directory
-#mkdir SAMA_12k_reads_subsampling_seed_1
-#cd SAMA_12_one_percent_subsampling_seed_1 && cp ../*_R1.fastq.gz ../*_R2.fastq.gz .
-
-# SAMA_12k_reads_subsampling_seed_2: second directory
-#cd ..
-#mkdir SAMA_12k_reads_subsampling_seed_2
-#cd SAMA_12_one_percent_subsampling_seed_2 && cp ../*_R1.fastq.gz ../*_R2.fastq.gz .
-
-# SAMA_12k_reads_subsampling_seed_3: third directory
-#cd ..
-#mkdir SAMA_12k_reads_subsampling_seed_3
-#cd  SAMA_12_one_percent_subsampling_seed_3 &&
-
-# The directory Data contains the 3 directories created
-#cd ..
-#mkdir Data &&
-#cd Data
-#mv ../SAMA_12k_reads_subsampling_seed_1 .
-#mv ../SAMA_12k_reads_subsampling_seed_2 .
-#mv ../SAMA_12k_reads_subsampling_seed_3 .
-
-#cd
-#cd $HOME/Bureau/marilyne/PhD_Thesis/simka
-#cp -R ../SAMA_12_first_10k_reads/Data . && rm -r ../SAMA_12_first_10k_reads/Data
+cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
+# Create repertory Data and move in it
+mkdir Data && cd ./Data
+# Copy trimmed .fastq.gz files ("trimmed" extension is due to performing sequences quality with atropos & illumina-utils)
+cp ../*trimmed_* . | gunzip *
+mv Data ../../simka
 
 cd $HOME/Bureau/marilyne/PhD_Thesis/simka/Data
+ #Performing subsampling at 1% with vsearch
+ 
+ for f in *fastq; do
+        vsearch \
+            --fastx_subsample $f \
+            --fastqout "$f"_subsampling \
+            --sample_pct 0.01 /
+ done
+  
 
 ## simka folder
 SIMKA_FOLDER="$HOME/Bureau/marilyne/PhD_Thesis/simka"
