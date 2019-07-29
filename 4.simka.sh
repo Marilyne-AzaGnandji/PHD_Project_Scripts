@@ -1,6 +1,6 @@
 #!/bin/bash -
 
-# We want to create in a repertory named Data 3 folders: SAMA_12k_reads_subsampling_seed_{1..3}
+## We want to create in a repertory named Data 3 folders: SAMA_12k_reads_subsampling_seed_{1..3}
 
 cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 # Create the folder Data and move in it
