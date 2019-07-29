@@ -3,7 +3,7 @@
 # We want to create in a repertory named Data 3 folders: SAMA_12k_reads_subsampling_seed_{1..3}
 
 cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
-# Create repertory Data and move in it
+# Create the folder Data and move in it
 mkdir Data && cd ./Data
 # Copy trimmed .fastq.gz files ("trimmed" extension is due to performing sequences quality with atropos & illumina-utils)
 cp ../*trimmed_* . | gunzip *
