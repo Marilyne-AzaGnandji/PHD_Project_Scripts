@@ -14,9 +14,9 @@ cd $HOME/Bureau/marilyne/PhD_Thesis/simka/Data
  
 for f in *fastq; do
        vsearch \
-           --fastx_subsample $f \
+           --fastx_subsample "$f" \
            --fastqout "$f"_subsampling \
-           --sample_pct 0.01 /
+           --sample_pct 0.01 
 done
  
 mkdir SAMA_12_one_percent_subsampling_seed_1 SAMA_12_one_percent_subsampling_seed_2 SAMA_12_one_percent_subsampling_seed_3
