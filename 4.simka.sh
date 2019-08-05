@@ -7,7 +7,6 @@ cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 mkdir Data
 
 # Copy trimmed .fastq.gz files ("trimmed" extension is due to performing sequences quality filtering with atropos & illumina-utils)
-<<<<<<< HEAD
 #cp *_trimmed_R1.fastq.gz *_trimmed_R2.fastq.gz ./Data
 cp *_trimmed_R1.fastq.gz *_trimmed_R2.fastq.gz ./Data
 cd ./Data && gunzip *
@@ -34,19 +33,6 @@ for i in 1 2 3 ; do
            --fastqout "$f"_subsampling \
            --sample_pct 0.1
     done
-=======
-cp ../*trimmed_* . && gunzip *
-mv Data ../../simka
-
-cd $HOME/Bureau/marilyne/PhD_Thesis/simka/Data
- #Performing subsampling at 1% with vsearch
- 
-for f in *fastq; do
-       vsearch \
-           --fastx_subsample "$f" \
-           --fastqout "$f"_subsampling \
-           --sample_pct 0.01 
->>>>>>> da27a3a9b9137c221f117fc0c21277885a40a306
 done
 
 cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/simka
@@ -95,4 +81,6 @@ for i in 1 2 3 ; do
 done 
 
 exit 0
+
+
 
