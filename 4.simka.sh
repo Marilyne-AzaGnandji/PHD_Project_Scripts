@@ -31,7 +31,7 @@ for i in 1 2 3 ; do
          vsearch \
            --fastx_subsample "$f" \
            --fastqout "$f"_subsampling \
-           --sample_pct 0.1
+           --sample_pct 0.01
     done
 done
 
