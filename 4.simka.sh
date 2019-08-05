@@ -7,16 +7,14 @@ cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 mkdir Data
 
 # Copy trimmed .fastq.gz files ("trimmed" extension is due to performing sequences quality filtering with atropos & illumina-utils)
-#cp *_trimmed_R1.fastq.gz *_trimmed_R2.fastq.gz ./Data
+
 cp *_trimmed_R1.fastq.gz *_trimmed_R2.fastq.gz ./Data
 cd ./Data && gunzip *
 cd ..
 
 cp -R Data ./simka
 rm -r Data
-#ls Data
 
-#mv Data ../../simka
 
 cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/simka/Data/
 #Performing subsampling at 1% with vsearch
@@ -26,6 +24,7 @@ cp *.fastq ./SAMA_12_one_percent_subsampling_seed_2
 cp *.fastq ./SAMA_12_one_percent_subsampling_seed_3
 
 FOLDER="SAMA_12_one_percent_subsampling_seed"
+# Here i need to review the subsampling test taking into account the zipped files
 for i in 1 2 3 ; do
     for f in ./${FOLDER}_${i}/*.fastq ; do
          vsearch \
