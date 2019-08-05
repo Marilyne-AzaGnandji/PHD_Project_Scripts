@@ -4,34 +4,63 @@
 
 cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads
 # Create the folder Data and move in it
-mkdir Data && cd ./Data
+mkdir Data
+
 # Copy trimmed .fastq.gz files ("trimmed" extension is due to performing sequences quality filtering with atropos & illumina-utils)
-cp ../*trimmed_* . && gunzip *
-mv Data ../../simka
+#cp *_trimmed_R1.fastq.gz *_trimmed_R2.fastq.gz ./Data
+cp *_trimmed_R1.fastq.gz *_trimmed_R2.fastq.gz ./Data
+cd ./Data && gunzip *
+cd ..
 
-cd $HOME/Bureau/marilyne/PhD_Thesis/simka/Data
- #Performing subsampling at 1% with vsearch
- 
-for f in *fastq; do
-       vsearch \
-           --fastx_subsample $f \
-           --fastqout "$f"_subsampling \
-           --sample_pct 0.01 /
-done
- 
+cp -R Data ./simka
+rm -r Data
+#ls Data
+
+#mv Data ../../simka
+
+cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/simka/Data/
+#Performing subsampling at 1% with vsearch
 mkdir SAMA_12_one_percent_subsampling_seed_1 SAMA_12_one_percent_subsampling_seed_2 SAMA_12_one_percent_subsampling_seed_3
-cp -r *_subsampling ./SAMA_12_one_percent_subsampling_seed_1 ./SAMA_12_one_percent_subsampling_seed_2 ./SAMA_12_one_percent_subsampling_seed_3
-rm *_subsampling
+cp *.fastq ./SAMA_12_one_percent_subsampling_seed_1
+cp *.fastq ./SAMA_12_one_percent_subsampling_seed_2
+cp *.fastq ./SAMA_12_one_percent_subsampling_seed_3
 
-cd $HOME/Bureau/marilyne/PhD_Thesis/simka
-cp -R ./Data/SAMA_12_one_percent_subsampling_seed_* . && rm -r ./Data
+FOLDER="SAMA_12_one_percent_subsampling_seed"
+for i in 1 2 3 ; do
+    for f in ./${FOLDER}_${i}/*.fastq ; do
+         vsearch \
+           --fastx_subsample "$f" \
+           --fastqout "$f"_subsampling \
+           --sample_pct 0.1
+    done
+done
+
+cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/simka
+cp -R ./Data/SAMA_12_one_percent_subsampling_seed_* . && rm ./Data/SAMA_12_one_percent_subsampling_seed_*/*.fastq
+rm -r Data
+
+cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/simka
+
+# Rename files extensions: *subsampling in .fastq
+FOLDER="SAMA_12_one_percent_subsampling_seed"
+for i in 1 2 3 ; do
+    for f in ./${FOLDER}_${i}/*.fastq_subsampling ; do
+	newfiles=${f/.fastq_subsampling/.fastq}
+	mv $f $newfiles
+    done
+done
+
+
+
+
+#cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/simka
 ## simka folder
-SIMKA_FOLDER="$HOME/Bureau/marilyne/PhD_Thesis/simka"
+SIMKA_FOLDER="$HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/simka"
 
 ## create a list of sets for simka
 FOLDER="SAMA_12_one_percent_subsampling_seed"
 for i in 1 2 3 ; do
-    for f in ./${FOLDER}_${i}/*_R1.fastq_subsampling ; do
+    for f in ./${FOLDER}_${i}/*_R1.fastq ; do
         SAMPLE="${f/.*BU/BU}"
         SAMPLE="${SAMPLE/_*/}"
         echo ${SAMPLE}" : "$(readlink -f $f)" ; "$(readlink -f ${f/_R1/_R2})
@@ -52,3 +81,4 @@ for i in 1 2 3 ; do
 done 
 
 exit 0
+
