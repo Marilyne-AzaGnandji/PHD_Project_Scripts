@@ -36,4 +36,4 @@ done
    # --quiet 2>> ${OUTPUT/.fastq.gz/.log}
 #done
 
-#exit 0
+exit 0
