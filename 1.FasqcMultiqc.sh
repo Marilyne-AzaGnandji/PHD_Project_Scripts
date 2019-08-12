@@ -12,7 +12,7 @@ which multiqc && \
     echo "multiqc is installed!" || \
     { echo "Error: multiqc is not installed" ; exit 1 ; }
 
-OUTPUT_FOLDER="FastqcResults"
+OUTPUT_FOLDER="MetabarcodingFastqcResults"
 # we can check this folder and its content like this:
 sudo find / -type d -name "${OUTPUT_FOLDER}"
 
