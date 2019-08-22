@@ -24,10 +24,10 @@ done
 cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
 
 # Merge read pairs
-for f in *R1_001.fastq.gz; do
 VSEARCH=$(which vsearch)
 THREADS=4
 ENCODING=33
+for f in *R1_001.fastq.gz; do
 FORWARD=$f
 REVERSE=${f/R1/R2}
 OUTPUT=${f/R1/}
