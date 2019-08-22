@@ -19,7 +19,7 @@ for f in *fastq.gz ; do
 done
 
 
-# Now we know how quality is encoded (offset of 33), we can merge paired-reads (R1 and R2).
+## Now we know how quality is encoded (offset of 33), we can merge paired-reads (R1 and R2).
 #!/bin/bash -
 cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
 
@@ -41,7 +41,7 @@ OUTPUT=${f/R1/}
     --quiet 2>> ${OUTPUT/.fastq.gz/.Log}
 done
 
-# Demultiplexing
+## Demultiplexing , primer clipping, sample dereplication and quality extraction
 
 exit 0
 
