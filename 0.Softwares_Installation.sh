@@ -35,7 +35,7 @@ sudo apt-get -y install cmake
 sudo apt-get -y install gcc
 git clone https://github.com/GATB/simka.git
 cd simka
-sudo apt install zlib1g-dev #to avoid bug with "sh INSTALL" execution , it is better to install zlib1g-dev in ubuntu
+sudo apt-get install zlib1g-dev #to avoid bug with "sh INSTALL" execution , it is better to install zlib1g-dev in ubuntu
 sh INSTALL
 cd example
 ./simple_test.sh # To test the sofware on your computer
