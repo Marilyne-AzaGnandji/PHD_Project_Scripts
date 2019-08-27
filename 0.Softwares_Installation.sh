@@ -62,8 +62,8 @@ sudo python3 -m pip install cutadapt #system-wide installation
 git clone https://github.com/torognes/swarm.git
 cd swarm/src/
 make
-cd ../bin/
-cd ./man/
+cp -r swarm /usr/local/bin/
+cd ../man/
 gzip -c swarm.1 > swarm.1.gz
 mv swarm.1.gz /usr/share/man/man1/ # in order to be able to display swarm manual with the command line: man swarm
 
