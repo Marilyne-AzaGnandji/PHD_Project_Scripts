@@ -25,19 +25,20 @@ done
 VSEARCH=$(which vsearch)
 THREADS=4
 ENCODING=33
-for f in *R1_001.fastq.gz; do
-FORWARD=$f
-REVERSE=${f/R1/R2}
-OUTPUT=${f/R1/}
- "${VSEARCH}" \
-    --threads ${THREADS} \
-    --fastq_mergepairs ${FORWARD} \
-    --reverse ${REVERSE} \
-    --fastq_ascii ${ENCODING} \
-    --fastqout ${OUTPUT} \
-    --fastq_allowmergestagger \
-    --quiet 2>> ${OUTPUT/.fastq.gz/.Log}
+for f in *R1_001.fastq.gz ; do
+    FORWARD=$f
+    REVERSE=${f/R1/R2}
+    OUTPUT=${f/_*/_assembled.fastq}
+    echo "${VSEARCH}" \
+	 --threads ${THREADS} \
+	 --fastq_mergepairs ${FORWARD} \
+	 --reverse ${REVERSE} \
+	 --fastq_ascii ${ENCODING} \
+	 --fastqout ${OUTPUT} \
+	 --fastq_allowmergestagger \
+	 --quiet 2> ${OUTPUT/.fastq/.log}
 done
+
 
 ## Demultiplexing , primer clipping, sample dereplication and quality extraction
 
