@@ -37,9 +37,8 @@ for f in *R1_001.fastq.gz ; do
 	 --fastqout ${OUTPUT} \
 	 --fastq_allowmergestagger \
 	 --quiet 2> ${OUTPUT/.fastq/.log}
-done
+done 
 
-<<<<<<< HEAD
 cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
 
 ##  primer clipping, sample dereplication and quality extraction
@@ -79,7 +78,7 @@ for INPUT in *_assembled.fastq ; do
     
     cat "${TMP_FASTQ1}" | \
     	${CUTADAPT} -a "${ANTI_PRIMER_R}" -O "${MIN_R}" -o "${TMP_FASTQ}" - >> "${LOG}"
-    cat "${LOG}"
+    #cat "${LOG}"
 
    
      # Discard sequences containing Ns, add expected error rates
@@ -91,7 +90,7 @@ for INPUT in *_assembled.fastq ; do
     	--eeout \
         --log /dev/stdout \
     	--fastqout "${TMP_FASTQ2}" > "${LOG1}"
-     cat "${LOG1}" 
+     #cat "${LOG1}" 
      # Discard sequences containing Ns, convert to fasta
     "${VSEARCH}" \
     	--quiet \
@@ -110,14 +109,8 @@ for INPUT in *_assembled.fastq ; do
         
 done
 
-#rm /tmp/tmp.*
-
 # Clean
 rm -f "${INPUT_REVCOMP}" "${TMP_FASTQ}" "${TMP_FASTA}" "${TMP_FASTQ2}" "${OUTPUT}"
-=======
-
-## Demultiplexing , primer clipping, sample dereplication and quality extraction
->>>>>>> 5013fdb1473e9bc314a19995146ecbd826bf5ba8
 
 exit 0
 
