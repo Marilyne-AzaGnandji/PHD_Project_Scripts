@@ -35,6 +35,7 @@ sudo apt-get -y install cmake
 sudo apt-get -y install gcc
 git clone https://github.com/GATB/simka.git
 cd simka
+sudo apt-get install zlib1g-dev # to avoid bug with "sh INSTALL" execution , it is better to install zlib1g-dev in ubuntu
 sh INSTALL
 cd example
 ./simple_test.sh # To test the sofware on your computer
@@ -45,7 +46,8 @@ python simkaMin/simkaMin.py # To see simka in-line help
 # (see https://github.com/torognes/vsearch)
 git clone https://github.com/torognes/vsearch.git
 cd vsearch
-./autogen.sh
+sudo apt-get install automake # in case of eventual issue with "./autogen.sh execution when you work in ubuntu
+./autogen.sh 
 ./configure
 make
 sudo make install
@@ -60,10 +62,10 @@ sudo python3 -m pip install cutadapt #system-wide installation
 git clone https://github.com/torognes/swarm.git
 cd swarm/src/
 make
-cd ../bin/
-cd ./man/
+sudo cp swarm /usr/local/bin/
+cd ../man/
 gzip -c swarm.1 > swarm.1.gz
-mv swarm.1.gz /usr/share/man/man1/ # in order to be able to display swarm manual with the command line: man swarm
+sudo mv swarm.1.gz /usr/share/man/man1/ # in order to be able to display swarm manual with the command line: man swarm
 
 
 exit 0

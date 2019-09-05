@@ -39,6 +39,7 @@ for f in *R1_001.fastq.gz ; do
 	 --quiet 2> ${OUTPUT/.fastq/.log}
 done
 
+<<<<<<< HEAD
 cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
 
 ##  primer clipping, sample dereplication and quality extraction
@@ -113,6 +114,10 @@ done
 
 # Clean
 rm -f "${INPUT_REVCOMP}" "${TMP_FASTQ}" "${TMP_FASTA}" "${TMP_FASTQ2}" "${OUTPUT}"
+=======
+
+## Demultiplexing , primer clipping, sample dereplication and quality extraction
+>>>>>>> 5013fdb1473e9bc314a19995146ecbd826bf5ba8
 
 exit 0
 
