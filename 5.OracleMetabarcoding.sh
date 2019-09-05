@@ -14,8 +14,8 @@ VSEARCH=$(which vsearch) && \
 # Check quality encoding (33 or 64?)
 
 for f in *fastq.gz ; do
-"${VSEARCH}" \
-      --fastq_chars ${f} 2> ${f/fastq.gz/log}
+    "${VSEARCH}" \
+	--fastq_chars ${f} 2> ${f/fastq.gz/log}
 done
 
 
@@ -25,21 +25,94 @@ done
 VSEARCH=$(which vsearch)
 THREADS=4
 ENCODING=33
-for f in *R1_001.fastq.gz; do
-FORWARD=$f
-REVERSE=${f/R1/R2}
-OUTPUT=${f/R1/}
- "${VSEARCH}" \
-    --threads ${THREADS} \
-    --fastq_mergepairs ${FORWARD} \
-    --reverse ${REVERSE} \
-    --fastq_ascii ${ENCODING} \
-    --fastqout ${OUTPUT} \
-    --fastq_allowmergestagger \
-    --quiet 2>> ${OUTPUT/.fastq.gz/.Log}
+for f in *R1_001.fastq.gz ; do
+    FORWARD=$f
+    REVERSE=${f/R1/R2}
+    OUTPUT=${f/_*/_assembled.fastq}
+    echo "${VSEARCH}" \
+	 --threads ${THREADS} \
+	 --fastq_mergepairs ${FORWARD} \
+	 --reverse ${REVERSE} \
+	 --fastq_ascii ${ENCODING} \
+	 --fastqout ${OUTPUT} \
+	 --fastq_allowmergestagger \
+	 --quiet 2> ${OUTPUT/.fastq/.log}
 done
 
-## Demultiplexing , primer clipping, sample dereplication and quality extraction
+cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
+
+##  primer clipping, sample dereplication and quality extraction
+set -x
+
+# Define binaries, temporary files and output files
+MIN_LENGTH=32
+CUTADAPT="$(which cutadapt) --discard-untrimmed --minimum-length ${MIN_LENGTH}"
+VSEARCH=$(which vsearch)
+INPUT_REVCOMP=$(mktemp)
+TMP_FASTQ=$(mktemp)
+TMP_FASTQ1=$(mktemp)
+TMP_FASTQ2=$(mktemp)
+TMP_FASTA=$(mktemp)
+OUTPUT=$(mktemp)
+PRIMER_F="CCTACGGGNGGCWGCAG"
+ANTI_PRIMER_R="GGATTAGATACCCBDGTAGTC" 
+#PRIMER_R="GACTACHVGGGTATCTAATCC"
+
+for INPUT in *_assembled.fastq ; do    
+    MIN_F=$(( ${#PRIMER_F} * 2 / 3 ))  # primer match is >= 2/3 of primer length
+    MIN_R=$(( ${#ANTI_PRIMER_R} * 2 / 3 ))
+    QUALITY_FILE="${INPUT/.fastq/.qual}"
+    FINAL_FASTA="${INPUT/_assembled.fastq/.fas}"
+    LOG="${INPUT/_*/.log}"
+    LOG1="${INPUT/_*/_final.log}"
+
+    # Reverse complement fastq file
+    "${VSEARCH}" --quiet \
+		 --fastx_revcomp "${INPUT}" \
+		 --fastqout "${INPUT_REVCOMP}"
+
+    # Trim forward & reverse primers (search normal and antisens)
+    cat "$INPUT" "${INPUT_REVCOMP}" | \
+        ${CUTADAPT} -g "${PRIMER_F}" -O "${MIN_F}" -o "${TMP_FASTQ1}" - > "${LOG}"
+   
+    
+    cat "${TMP_FASTQ1}" | \
+    	${CUTADAPT} -a "${ANTI_PRIMER_R}" -O "${MIN_R}" -o "${TMP_FASTQ}" - >> "${LOG}"
+    cat "${LOG}"
+
+   
+     # Discard sequences containing Ns, add expected error rates
+    "${VSEARCH}" \
+    	--quiet \
+    	--fastq_filter "${TMP_FASTQ}" \
+    	--fastq_maxns 0 \
+    	--relabel_sha1 \
+    	--eeout \
+        --log /dev/stdout \
+    	--fastqout "${TMP_FASTQ2}" > "${LOG1}"
+     cat "${LOG1}" 
+     # Discard sequences containing Ns, convert to fasta
+    "${VSEARCH}" \
+    	--quiet \
+    	--fastq_filter "${TMP_FASTQ}" \
+    	--fastq_maxns 0 \
+    	--fastaout "${TMP_FASTA}" >> "${LOG1}"
+    
+     # Dereplicate at the study level
+    "${VSEARCH}" \
+        --quiet \
+        --derep_fulllength "${TMP_FASTA}" \
+        --sizeout \
+        --fasta_width 0 \
+        --relabel_sha1 \
+        --output "${FINAL_FASTA}" >> "${LOG1}"
+        
+done
+
+#rm /tmp/tmp.*
+
+# Clean
+rm -f "${INPUT_REVCOMP}" "${TMP_FASTQ}" "${TMP_FASTA}" "${TMP_FASTQ2}" "${OUTPUT}"
 
 exit 0
 
