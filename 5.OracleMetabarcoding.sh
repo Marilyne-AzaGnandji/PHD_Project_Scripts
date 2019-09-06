@@ -2,7 +2,7 @@
 
 ### We want to use Fred's metabarcoding pipeline to obtain OTU table from FASTQ files (with swarm)
 
-cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
+cd $HOME/Documents/Marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
 ## Check quality encoding (33 or 64?) : Our data are ARN 16S metadata
 
 # Test if vsearch is available on your computer
@@ -39,8 +39,7 @@ for f in *R1_001.fastq.gz ; do
 	 --quiet 2> ${OUTPUT/.fastq/.log}
 done 
 
-cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
-
+cd $HOME/Documents/Marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
 ##  primer clipping, sample dereplication and quality extraction
 set -x
 
@@ -66,22 +65,22 @@ for INPUT in *_assembled.fastq ; do
     LOG="${INPUT/_*/.log}"
     LOG1="${INPUT/_*/_final.log}"
 
-    # Reverse complement fastq file
+    # # Reverse complement fastq file
     "${VSEARCH}" --quiet \
-		 --fastx_revcomp "${INPUT}" \
-		 --fastqout "${INPUT_REVCOMP}"
+    		 --fastx_revcomp "${INPUT}" \
+    		 --fastqout "${INPUT_REVCOMP}"
 
     # Trim forward & reverse primers (search normal and antisens)
     cat "$INPUT" "${INPUT_REVCOMP}" | \
         ${CUTADAPT} -g "${PRIMER_F}" -O "${MIN_F}" -o "${TMP_FASTQ1}" - > "${LOG}"
-   
+    
     
     cat "${TMP_FASTQ1}" | \
     	${CUTADAPT} -a "${ANTI_PRIMER_R}" -O "${MIN_R}" -o "${TMP_FASTQ}" - >> "${LOG}"
     #cat "${LOG}"
 
-   
-     # Discard sequences containing Ns, add expected error rates
+    
+    # Discard sequences containing Ns, add expected error rates
     "${VSEARCH}" \
     	--quiet \
     	--fastq_filter "${TMP_FASTQ}" \
@@ -90,15 +89,15 @@ for INPUT in *_assembled.fastq ; do
     	--eeout \
         --log /dev/stdout \
     	--fastqout "${TMP_FASTQ2}" > "${LOG1}"
-     #cat "${LOG1}" 
-     # Discard sequences containing Ns, convert to fasta
+    #cat "${LOG1}" 
+    # Discard sequences containing Ns, convert to fasta
     "${VSEARCH}" \
     	--quiet \
     	--fastq_filter "${TMP_FASTQ}" \
     	--fastq_maxns 0 \
     	--fastaout "${TMP_FASTA}" >> "${LOG1}"
     
-     # Dereplicate at the study level
+    # Dereplicate at the study level
     "${VSEARCH}" \
         --quiet \
         --derep_fulllength "${TMP_FASTA}" \
@@ -106,11 +105,45 @@ for INPUT in *_assembled.fastq ; do
         --fasta_width 0 \
         --relabel_sha1 \
         --output "${FINAL_FASTA}" >> "${LOG1}"
-        
+    # cat "${LOG1}"
+
+
+    #Discard quality lines, extract hash, expected error rates and read length
+    sed 'n;n;N;d' "${TMP_FASTQ2}" | \
+        awk 'BEGIN {FS = "[;=]"}
+             {if (/^@/) {printf "%s\t%s\t", $1, $3} else {print length($1)}}' | \
+    		 tr -d "@" > "${OUTPUT}"
+    cat "${OUTPUT}"
+
+    # Produce the final quality file
+    sort -k3,3n -k1,1d -k2,2n "${OUTPUT}" | \
+	uniq --check-chars=40 > "${QUALITY_FILE}"
+
 done
 
 # Clean
 rm -f "${INPUT_REVCOMP}" "${TMP_FASTQ}" "${TMP_FASTA}" "${TMP_FASTQ2}" "${OUTPUT}"
+
+cd $HOME/Documents/Marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
+## Global dereplication, clustering and chimera detection
+set -x
+
+VSEARCH=$(which vsearch)
+SWARM=$(which swarm)
+TMP_FASTA=$(mktemp --tmpdir=".")
+FINAL_FASTA="T-2.fas"
+
+# # Pool sequences
+# cat S[0-9][0-9].fas > "${TMP_FASTA}" # i don't understand this line
+
+# # Dereplicate (vsearch)
+# echo "${VSEARCH}" --derep_fulllength "${TMP_FASTA}" \
+#              --sizein \
+#              --sizeout \
+#              --fasta_width 0 \
+#              --output "${FINAL_FASTA}" > /dev/null
+
+# rm -f "${TMP_FASTA}"
 
 exit 0
 
