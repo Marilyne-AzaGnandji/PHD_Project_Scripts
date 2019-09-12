@@ -131,20 +131,46 @@ set -x
 VSEARCH=$(which vsearch)
 SWARM=$(which swarm)
 TMP_FASTA=$(mktemp --tmpdir=".")
-FINAL_FASTA="T-2.fas"
+FINAL_FASTA="combined_samples.fas"
 
-# # Pool sequences
-# cat S[0-9][0-9].fas > "${TMP_FASTA}" # i don't understand this line
+# Pool sequences
+cat *.fas > "${TMP_FASTA}" 
 
-# # Dereplicate (vsearch)
-# echo "${VSEARCH}" --derep_fulllength "${TMP_FASTA}" \
-#              --sizein \
-#              --sizeout \
-#              --fasta_width 0 \
-#              --output "${FINAL_FASTA}" > /dev/null
+# Dereplicate (vsearch)
+"${VSEARCH}" --derep_fulllength "${TMP_FASTA}" \
+             --sizein \
+             --sizeout \
+             --fasta_width 0 \
+             --output "${FINAL_FASTA}" > /dev/null
 
-# rm -f "${TMP_FASTA}"
+rm -f "${TMP_FASTA}"
 
+# cd $HOME/Documents/Marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
+# set -x
+# # Clustering
+# SWARM=$(which swarm) #
+# VSEARCH=$(which vsearch) #
+# THREADS=4
+# TMP_REPRESENTATIVES=$(mktemp --tmpdir=".")
+# FINAL_FASTA="combined_samples.fas" #
+# "${SWARM}" \
+#     -d 1 -f -t ${THREADS} -z \
+#     -i ${FINAL_FASTA/.fas/_1f.struct} \
+#     -s ${FINAL_FASTA/.fas/_1f.stats} \
+#     -w ${TMP_REPRESENTATIVES} \
+#     -o ${FINAL_FASTA/.fas/_1f.swarms} < ${FINAL_FASTA}
+
+# # Sort representatives
+# "${VSEARCH}" --fasta_width 0 \
+#              --sortbysize ${TMP_REPRESENTATIVES} \
+#              --output ${FINAL_FASTA/.fas/_1f_representatives.fas}
+# rm ${TMP_REPRESENTATIVES}
+  
+# # Chimera checking
+# REPRESENTATIVES=${FINAL_FASTA/.fas/_1f_representatives.fas}
+# UCHIME=${REPRESENTATIVES/.fas/.uchime}
+# "${VSEARCH}" --uchime_denovo "${REPRESENTATIVES}" \
+#              --uchimeout "${UCHIME}"
 exit 0
 
 
