@@ -151,7 +151,7 @@ cat *.fas | \
 #              --sizeout \
 #              --fasta_width 0 \
 #              --output "${FINAL_FASTA}" > /dev/null
-ç
+
 #rm -f "${TMP_FASTA}"
 
 cd $HOME/Documents/Marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
