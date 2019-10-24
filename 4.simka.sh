@@ -79,6 +79,13 @@ for i in 1 2 3 ; do
         -out ./simkamin_${i}/
 done 
 
+#cd $HOME/Documents/Marilyne/PhD_Thesis/SAMA_12_first_10k_reads/simka
+#set -x
+# simka results visualization
+for i in 1 2 3; do
+ python2 scripts/visualization/run-visualization.py -in simkamin_${i} -out simkamin${i} -pca -heatmap -tree 
+done
+
 exit 0
 
 
