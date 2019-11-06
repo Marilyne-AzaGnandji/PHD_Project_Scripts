@@ -157,7 +157,6 @@ cat *.fas | \
 cd $HOME/Documents/Marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
 set -x
 # Clustering
-<<<<<<< HEAD
 SWARM=$(which swarm) #
 VSEARCH=$(which vsearch) #
 THREADS=3
@@ -183,31 +182,6 @@ REPRESENTATIVES=${FINAL_FASTA/.fas/_1f_representatives.fas}
 UCHIME=${REPRESENTATIVES/.fas/.uchime}
 "${VSEARCH}" --uchime_denovo "${REPRESENTATIVES}" \
              --uchimeout "${UCHIME}"
-=======
-#SWARM=$(which swarm) #
-#VSEARCH=$(which vsearch) #
-#THREADS=4
-#TMP_REPRESENTATIVES=$(mktemp --tmpdir=".")
-#FINAL_FASTA="combined_samples.fas" #
-#"${SWARM}" \
- #     -d 1 -f -b 3 -c 8 -y 16 -t ${THREADS} -z \
-  #    -i ${FINAL_FASTA/.fas/_1f.struct} \
-   #   -s ${FINAL_FASTA/.fas/_1f.stats} \
-    #  -w ${TMP_REPRESENTATIVES} \
-     # -o ${FINAL_FASTA/.fas/_1f.swarms} < ${FINAL_FASTA}
-
-# # Sort representatives
-# "${VSEARCH}" --fasta_width 0 \
-#              --sortbysize ${TMP_REPRESENTATIVES} \
-#              --output ${FINAL_FASTA/.fas/_1f_representatives.fas}
-# rm ${TMP_REPRESENTATIVES}
-  
-# # Chimera checking
-# REPRESENTATIVES=${FINAL_FASTA/.fas/_1f_representatives.fas}
-# UCHIME=${REPRESENTATIVES/.fas/.uchime}
-# "${VSEARCH}" --uchime_denovo "${REPRESENTATIVES}" \
-#              --uchimeout "${UCHIME}"cd $HOME/Documents/Marilyne/PhD_Thesis/SAMA_12_first_10k_reads/Metabarcoding
->>>>>>> c78dc7d3121e30fae0fad17971bf446c778ddb58
 
 exit 0
 
