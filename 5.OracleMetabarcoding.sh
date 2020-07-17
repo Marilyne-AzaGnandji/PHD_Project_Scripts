@@ -281,8 +281,9 @@ cd $HOME/Documents/marilyne/Metabarcoding/
 TABLE="combined_samples.OTU.table"
 FILTERED="${TABLE/.table/.filtered.table}"
 
-head -n 1 "${TABLE}" > "${FILTERED}" 
-cat "${TABLE}"| awk '$7 == "N" && $9 <= 0.0002 && ($2 >= 3 || $8 >= 2)' >> "${FILTERED}"
+head -n 1 "${TABLE}" > "${FILTERED}"
+awk '$7 == "N" && $9 <= 0.0002 && ($2 >= 3 || $8 >= 2)' "${TABLE}" >> "${FILTERED}"
+#cat "${TABLE}"| awk '$7 == "N" && $9 <= 0.0002 && ($2 >= 3 || $8 >= 2)' >> "${FILTERED}"
 
 exit 0
 
