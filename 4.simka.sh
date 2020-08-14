@@ -9,8 +9,8 @@ mkdir Data
 # Copy trimmed .fastq.gz files ("trimmed" extension is due to performing sequences quality filtering with atropos & illumina-utils)
 
 cp *_trimmed_R1.fastq.gz *_trimmed_R2.fastq.gz ./Data
-cd ./Data && gunzip *
-cd ..
+#cd ./Data && gunzip *
+#cd ..
 
 cp -R Data ./simka
 rm -r Data
@@ -19,14 +19,14 @@ rm -r Data
 cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/simka/Data/
 #Performing subsampling at 1% with vsearch
 mkdir SAMA_12_one_percent_subsampling_seed_1 SAMA_12_one_percent_subsampling_seed_2 SAMA_12_one_percent_subsampling_seed_3
-cp *.fastq ./SAMA_12_one_percent_subsampling_seed_1
-cp *.fastq ./SAMA_12_one_percent_subsampling_seed_2
-cp *.fastq ./SAMA_12_one_percent_subsampling_seed_3
+cp *.fastq.gz ./SAMA_12_one_percent_subsampling_seed_1
+cp *.fastq.gz ./SAMA_12_one_percent_subsampling_seed_2
+cp *.fastq.gz ./SAMA_12_one_percent_subsampling_seed_3
 
 FOLDER="SAMA_12_one_percent_subsampling_seed"
 # Here i need to review the subsampling test taking into account the zipped files (just need to add --gzip_decompress option)
 for i in 1 2 3 ; do
-    for f in ./${FOLDER}_${i}/*.fastq ; do
+    for f in ./${FOLDER}_${i}/*.fastq.gz ; do
          vsearch --gzip_decompress\
            --fastx_subsample "$f" \
            --fastqout "$f"_subsampling \
@@ -35,7 +35,7 @@ for i in 1 2 3 ; do
 done
 
 cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/simka
-cp -R ./Data/SAMA_12_one_percent_subsampling_seed_* . && rm ./Data/SAMA_12_one_percent_subsampling_seed_*/*.fastq
+cp -R ./Data/SAMA_12_one_percent_subsampling_seed_* . && rm ./Data/SAMA_12_one_percent_subsampling_seed_*/*.fastq.gz
 rm -r Data
 
 cd $HOME/Bureau/marilyne/PhD_Thesis/SAMA_12_first_10k_reads/simka
