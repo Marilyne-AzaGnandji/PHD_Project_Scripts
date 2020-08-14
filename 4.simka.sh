@@ -24,10 +24,10 @@ cp *.fastq ./SAMA_12_one_percent_subsampling_seed_2
 cp *.fastq ./SAMA_12_one_percent_subsampling_seed_3
 
 FOLDER="SAMA_12_one_percent_subsampling_seed"
-# Here i need to review the subsampling test taking into account the zipped files
+# Here i need to review the subsampling test taking into account the zipped files (just need to add --gzip_decompress option)
 for i in 1 2 3 ; do
     for f in ./${FOLDER}_${i}/*.fastq ; do
-         vsearch \
+         vsearch --gzip_decompress\
            --fastx_subsample "$f" \
            --fastqout "$f"_subsampling \
            --sample_pct 0.01
