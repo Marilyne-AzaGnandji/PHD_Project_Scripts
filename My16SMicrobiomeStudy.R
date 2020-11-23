@@ -194,19 +194,19 @@ p <- p + theme_bw() + ggtitle("stress = 0.164                       NMDS + Bray-
 plot(p)
 
 #Plotting beta diversity on "Historiques_3ans"
-P <- plot_ordination(oracle, ord, color = "Historique_3ans", title = "stress = 0.1387991")+
+P <- plot_ordination(oracle, ord, color = "Historique_3ans")+
   geom_point(size=4)
 P <- P + theme_bw() + ggtitle("stress = 0.164           NMDS + Bray-Curtis")
 plot(P) 
 
 #Plotting beta diversity on "Type_sol_prod"
-P <- plot_ordination(oracle, ord, color = "Type_sol_prod",  title = "stress = 0.1387991    NMDS+Bray-Curtis")+
+P <- plot_ordination(oracle, ord, color = "Type_sol_prod")+
   geom_point(size=4)
 P <- P + theme_bw() + ggtitle("stress = 0.164                     NMDS + Bray-Curtis") 
 plot(P) 
 
 #Plotting beta diversity on  "Typo_Scientifique_sol"
-P <- plot_ordination(oracle, ord, color =  "Typo_Scientifique_sol",  title = "stress = 0.1387991    NMDS+Bray-Curtis")+
+P <- plot_ordination(oracle, ord, color =  "Typo_Scientifique_sol")+
   geom_point(size=4)
 P <- P + theme_bw() + ggtitle("stress = 0.164                     NMDS + Bray-Curtis") 
 plot(P) 
