@@ -50,7 +50,7 @@ NEW_TABLEOTU <- read.csv("MyOTUFilteredTab.csv", sep = "")#First column modifica
 ORACLE_METADATA<-read_csv("PratiquesCuturales.csv",na = c("", "NA"), quoted_na = TRUE,comment = "")#my metadata  
 
 # create OTU_mat for phyloseq
-otu_mat <- cbind(NEW_TABLEOTU[1],TABLEOTU[-1])
+otu_mat <- cbind(NEW_TABLEOTU[1],TABLEOTU)
 
 # create variable taxmat for phyloseq
 new_cols <- c("Domain", "Phylum", "Class", "Ordre", "Family", "Genus", "Species")# New column headers
@@ -183,7 +183,7 @@ otu.oracle <- otu_table(oracle)
 matrix <- otu.oracle
 matrix_use<-as.matrix(matrix[,colSums(matrix)>=1])
 library(vegan)
-#NMDS <- metaMDS(matrix_use, distance = "bray", trymax = 100)
+NMDS <- metaMDS(matrix_use, distance = "bray", trymax = 20)
 
 ord <- ordinate(oracle, method = "NMDS", distance = "bray")
 
